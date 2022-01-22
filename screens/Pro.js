@@ -23,7 +23,23 @@ export default function App({ navigation }) {
   const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
   };
-
+  const getData = () => {
+    setTodo([]);
+    let arr = [];
+    const db = firebase.firestore();
+    const req = db
+      .collection("sosRequest")
+      .where("isAssigned", "==", false)
+      .get()
+      .then(async (query) => {
+        await query.forEach((doc) => {
+          let obj = doc.data();
+          obj["_id"] = doc.id;
+          arr.push(obj);
+        });
+        setTodo(arr);
+      });
+  };
   useEffect(() => {
     LogBox.ignoreAllLogs();
     getData();
@@ -31,6 +47,12 @@ export default function App({ navigation }) {
   const pressHandler = (key) => {
     navigation.navigate("RouteSos", { _id: key });
   };
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    getData();
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>

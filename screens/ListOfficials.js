@@ -28,7 +28,30 @@ export default function listofficials(props) {
   const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
   };
-
+  useEffect(() => {
+    LogBox.ignoreAllLogs();
+    getData();
+    setRefreshing(false);
+  }, []);
+  const getData = () => {
+    const db = firebase.firestore();
+    const usr = db
+      .collection("userInfo")
+      .where("department", "==", firebase.auth().currentUser.email.toString());
+    usr.get().then((query) => {
+      let arr = [];
+      query.forEach((doc) => {
+        arr.push(doc.data());
+      });
+      setUsers(arr);
+      setLoading(false);
+    });
+  };
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    getData();
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
   return (
     <ScrollView
       refreshControl={

@@ -17,6 +17,17 @@ import Login from "../screens/Login";
 import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
 import Emergency from "../screens/Emergency";
+import Route from "../screens/Route";
+import EmergencyDash from "../screens/EmergencyDash";
+import ListOfficials from "../screens/ListOfficials";
+import addOfficial from "../screens/addOfficial";
+import RouteSos from "../screens/RouteSos";
+import Sos from "../screens/Sos";
+import EmergencyPerson from "../screens/EmergencyPerson";
+import EmergencyDetails from "../screens/EmergencyDetails";
+import Track from "../screens/Track";
+import User from "../screens/User";
+import Maps from "../screens/Maps";
 
 // drawer
 import CustomDrawerContent from "./Menu";
@@ -42,6 +53,115 @@ function DashboardStack(props) {
             <Header title="Emergency" navigation={navigation} scene={scene} />
           ),
           cardStyle: { backgroundColor: "#F8F9FE" },
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function ElementsStack(props) {
+  return (
+    <Stack.Navigator mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Elements"
+        component={Elements}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header title="Elements" navigation={navigation} scene={scene} />
+          ),
+          cardStyle: { backgroundColor: "#F8F9FE" },
+        }}
+      />
+      <Stack.Screen
+        name="Pro"
+        component={Pro}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title=""
+              back
+              white
+              transparent
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          headerTransparent: true,
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function ArticlesStack(props) {
+  return (
+    <Stack.Navigator mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Articles"
+        component={Articles}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header title="Articles" navigation={navigation} scene={scene} />
+          ),
+          cardStyle: { backgroundColor: "#F8F9FE" },
+        }}
+      />
+      <Stack.Screen
+        name="Pro"
+        component={Pro}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title=""
+              back
+              white
+              transparent
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          headerTransparent: true,
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function ProfileStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="Profile" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              transparent
+              white
+              title="Profile"
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#FFFFFF" },
+          headerTransparent: true,
+        }}
+      />
+      <Stack.Screen
+        name="Pro"
+        component={Pro}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title=""
+              back
+              white
+              transparent
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          headerTransparent: true,
         }}
       />
     </Stack.Navigator>
@@ -169,7 +289,20 @@ function HomeStack(props) {
           cardStyle: { backgroundColor: "#F8F9FE" },
         }}
       />
-
+      <Stack.Screen
+        name="EmergencyPerson"
+        component={EmergencyPerson}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title="Emergency Person"
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#F8F9FE" },
+        }}
+      />
       <Stack.Screen
         name="EmergencyDetails"
         component={EmergencyDetails}
@@ -184,7 +317,20 @@ function HomeStack(props) {
           cardStyle: { backgroundColor: "#F8F9FE" },
         }}
       />
-
+      <Stack.Screen
+        name="ListOfficials"
+        component={ListOfficials}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title="ListOfficials"
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#F8F9FE" },
+        }}
+      />
       <Stack.Screen name="Add Official" component={addOfficial} />
       <Stack.Screen
         name="Route"
@@ -192,6 +338,20 @@ function HomeStack(props) {
         options={{
           header: ({ navigation, scene }) => (
             <Header title="Route" navigation={navigation} scene={scene} />
+          ),
+          cardStyle: { backgroundColor: "#F8F9FE" },
+        }}
+      />
+      <Stack.Screen
+        name="Track"
+        component={Track}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title="Track Safety"
+              navigation={navigation}
+              scene={scene}
+            />
           ),
           cardStyle: { backgroundColor: "#F8F9FE" },
         }}
@@ -214,7 +374,20 @@ function HomeStack(props) {
 // 		</Stack.Navigator>
 // 	);
 // }
-
+export default function OnboardingStack(props) {
+  return (
+    <Stack.Navigator mode="card" headerMode="none">
+      <Stack.Screen
+        name="Onboarding"
+        component={Onboarding}
+        option={{
+          headerTransparent: true,
+        }}
+      />
+      <Stack.Screen name="App" component={AppStack} />
+    </Stack.Navigator>
+  );
+}
 function MapStack(props) {
   return (
     <Stack.Navigator mode="card" headerMode="screen">
@@ -264,8 +437,11 @@ function AppStack(props) {
     >
       <Drawer.Screen name="Home" component={HomeStack} />
       <Drawer.Screen name="Profile" component={ProfileStack} />
+      <Drawer.Screen name="Account" component={Register} />
       <Drawer.Screen name="Elements" component={ElementsStack} />
       <Drawer.Screen name="Articles" component={ArticlesStack} />
+      <Drawer.Screen name="Route" component={DashboardStack} />
+      <Drawer.Screen name="Maps" component={MapStack} />
     </Drawer.Navigator>
   );
 }
