@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "Servicure",
+    "slug": "track-your-help",
+    "privacy": "public",
+    "platforms": ["ios", "android"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/logo.png",
+    "splash": {
+      "image": "./assets/map.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#E4E4E3"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.ptb.servicure",
+      "versionCode": 2,
+      "permissions": ["ACCESS_BACKGROUND_LOCATION"]
+    },
+    "description": "Servicure, where you can track your help on a map",
+    "githubUrl": "https://github.com/seneark/Servicure"
+  }
+}
